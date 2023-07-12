@@ -1,0 +1,468 @@
+{% load static  %}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="{% static 'assets/plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/css/style.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/css/style-responsive.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/css/theme/default.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/css/animate.min.css' %}" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="{% static 'assets/plugins/pace/pace.min.js' %}"></script>
+    <script type="text/javascript">     csrf_token = "{{ csrf_token }}"; </script>
+    
+	<!-- ================== END BASE JS ================== -->
+</head>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+  </svg>
+<body>
+    <div id="page-container" class="fade">
+        <!-- BEGIN #top-nav -->
+        <div id="top-nav" class="top-nav">
+            <!-- BEGIN container -->
+            <div class="container">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown dropdown-hover">
+                            <a href="#" data-toggle="dropdown"><img src="{% static 'assets/img/english.png' %}" class="flag-img" alt="" /> English <i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><img src="{% static 'assets/img/english.png' %}" class="flag-img" alt="" /> English</a></li>
+                                <li><a href="#"><img src="{% static 'assets/img/german.png' %}" class="flag-img" alt="" /> German</a></li>
+                                <li><a href="#"><img src="{% static 'assets/img/spanish.png' %}" class="flag-img" alt="" /> Spanish</a></li>
+                                <li><a href="#"><img src="{% static 'assets/img/french.png' %}" class="flag-img" alt="" /> French</a></li>
+                                <li><a href="#"><img src="{% static 'assets/img/chinese.png' %}" class="flag-img" alt="" /> Chinese</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Customer Care</a></li>
+                        <li><a href="#">Order Tracker</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Career</a></li>
+                        <li><a href="#">Our Forum</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#"><i class="fa fa-facebook f-s-14"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter f-s-14"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram f-s-14"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble f-s-14"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus f-s-14"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END container -->
+        </div>
+        <!-- END #top-nav -->
+    
+        <!-- BEGIN #header -->
+        <div id="header" class="header">
+            <!-- BEGIN container -->
+            <div class="container">
+                <!-- BEGIN header-container -->
+                <div class="header-container">
+                    <!-- BEGIN navbar-header -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="header-logo">
+                            <a href="{% url 'core:index' %}">
+                                <span class="brand"></span>
+                                <span>Color</span>Admin
+                                <small>e-commerce frontend theme</small>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- END navbar-header -->
+                    <!-- BEGIN header-nav -->
+                    <div class="header-nav">
+                        <div class=" collapse navbar-collapse" id="navbar-collapse">
+                            <ul class="nav">
+                                <li class="active"><a href="{% url 'core:index' %}">Home</a></li>
+                                <li class="dropdown dropdown-full-width dropdown-hover">
+                                    <a href="#" data-toggle="dropdown">
+                                        Our Store 
+                                        <i class="fa fa-angle-down"></i>
+                                        <span class="arrow top"></span>
+                                    </a>
+                                    <!-- BEGIN dropdown-menu -->
+                                    <div class="dropdown-menu p-0">
+                                        <!-- BEGIN dropdown-menu-container -->
+                                        <div class="dropdown-menu-container">
+                                            <!-- BEGIN dropdown-menu-sidebar -->
+                                            <div class="dropdown-menu-sidebar">
+                                                <h4 class="title">Shop By Categories</h4>
+                                                <ul class="dropdown-menu-list">
+                                                    {% for category in categories %}
+                                                        <li><a href="{% url 'core:search_with_query' category %}">{{category}} <i class="fa fa-angle-right pull-right"></i></a></li>
+                                                    {% endfor %}
+                                                    <!-- <li><a href="{% url 'core:products' %}">Tablet <i class="fa fa-angle-right pull-right"></i></a></li>
+                                                    <li><a href="{% url 'core:products' %}">Laptop <i class="fa fa-angle-right pull-right"></i></a></li>
+                                                    <li><a href="{% url 'core:products' %}">Desktop <i class="fa fa-angle-right pull-right"></i></a></li>
+                                                    <li><a href="{% url 'core:products' %}">TV <i class="fa fa-angle-right pull-right"></i></a></li>
+                                                    <li><a href="{% url 'core:products' %}">Speaker <i class="fa fa-angle-right pull-right"></i></a></li>
+                                                    <li><a href="{% url 'core:products' %}">Gadget <i class="fa fa-angle-right pull-right"></i></a></li> -->
+                                                </ul>
+                                            </div>
+                                            <!-- END dropdown-menu-sidebar -->
+                                            <!-- BEGIN dropdown-menu-content -->
+                                            <div class="dropdown-menu-content">
+                                                <h4 class="title">Shop By Popular Products</h4>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <ul class="dropdown-menu-list">
+                                                            {% for product in popular_products %}
+                                                                <li><a href="{% url 'core:product_details' product.id %}"><i class="fa fa-fw fa-angle-right text-muted"></i> {{product.product_name}}</a></li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <h4 class="title">Shop By Brand</h4>
+                                                <ul class="dropdown-brand-list m-b-0">
+                                                    {% for brand in brands %}
+                                                        <li><a href="{% url 'core:tagged_products' brand|lower %}"><img src="{% static 'assets/img/'|add:brand|add:'.png' %}" alt="{{ forloop.counter }}"></a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            <!-- END dropdown-menu-content -->
+                                        </div>
+                                        <!-- END dropdown-menu-container -->
+                                    </div>
+                                    <!-- END dropdown-menu -->
+                                </li>
+                                <li class="dropdown dropdown-hover">
+                                    <a href="#" data-toggle="dropdown">
+                                        Accessories 
+                                        <i class="fa fa-angle-down"></i> 
+                                        <span class="arrow top"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{% url 'core:search_with_query' 'Mobile' %}">Mobile Phone</a></li>
+                                        <li><a href="{% url 'core:search_with_query' 'Tablet' %}">Tablet</a></li>
+                                        <li><a href="{% url 'core:search_with_query' 'TV' %}">TV</a></li>
+                                        <li><a href="{% url 'core:search_with_query' 'Desktop' %}">Desktop</a></li>
+                                        <li><a href="{% url 'core:search_with_query' 'Laptop' %}">Laptop</a></li>
+                                        <li><a href="{% url 'core:search_with_query' 'Speaker' %}">Speaker</a></li>
+                                        <li><a href="{% url 'core:search_with_query' 'Gadget' %}">Gadget</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{% url 'core:search_with_query' 'new' %}">New Arrival</a></li>
+                                <li class="dropdown dropdown-hover">
+                                    <a href="#" data-toggle="dropdown">
+                                        Pages
+                                        <i class="fa fa-angle-down"></i> 
+                                        <span class="arrow top"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{% url 'core:index' %}">Home (Default)</a></li>
+                                        <li><a href="{% url 'core:index' %}">Home (Fixed Header)</a></li>
+                                        <li><a href="{% url 'core:index' %}">Home (Inverse Header)</a></li>
+                                        <li><a href="{% url 'core:search_with_query' 'apple' %}">Search Results</a></li>
+                                        <li><a href="{% url 'core:products' %}">Product Page</a></li>
+                                        <li><a href="{% url 'core:product_details' 3 %}">Product Details Page</a></li>
+                                        <li><a href="{% url 'core:checkout_cart' %}">Checkout Cart</a></li>
+                                        <li><a href="{% url 'core:checkout_shipping' %}">Checkout Shipping</a></li>
+                                        <li><a href="{% url 'core:checkout_billing' %}">Checkout Payment</a></li>
+                                        <li><a href="{% url 'core:checkout_payment' %}">Checkout Complete</a></li>
+                                        <li><a href="{% url 'core:my_account' %}">My Account</a></li>
+                                        <li><a href="{% url 'core:contact_us' %}">Contact Us</a></li>
+                                        <li><a href="{% url 'core:about_us' %}">About Us</a></li>
+                                        <li><a href="{% url 'core:faq' %}">FAQ</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown dropdown-hover">
+                                    <a href="#" data-toggle="dropdown">
+                                        <i class="fa fa-search search-btn"></i>
+                                        <span class="arrow top"></span>
+                                    </a>
+                                    <div class="dropdown-menu p-15">
+                                        <form action="{% url 'core:search_post_request' %}" method="POST" name="search_form">
+                                            <div class="input-group">
+                                                {% csrf_token %}
+                                                <input type="text" placeholder="Search" name="search_query"  class="form-control bg-silver-lighter" />
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-inverse" type="submit"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div> 
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- END header-nav -->
+                    <!-- BEGIN header-nav -->
+                    <div class="header-nav">
+                        <ul class="nav pull-right">
+                            <li class="dropdown dropdown-hover">
+                                <a href="#" class="header-cart" data-toggle="dropdown">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    <span class="total">{{cart.items.all|length}}</span>
+                                    <span class="arrow top"></span>
+                                </a>
+                    
+                                <div class="dropdown-menu dropdown-menu-cart p-0">
+                                    <div class="cart-header">
+                                        <h4 class="cart-title">Shopping Bag </h4>
+                                    </div>
+                                    <div class="cart-body">
+                                        {% if user.is_authenticated %}
+                                            <ul class="cart-item">
+                                                {% if cart.items.all|length > 0 %}
+                                                    {% for item in cart.items.all|dictsort:"product.product_name" %}
+                                                    <li>
+                                                        <div class="cart-item-image"><img src="{% static item.product.image_path %}" alt="" /></div>
+                                                        <div class="cart-item-info">
+                                                            <h4>{{item.quantity}}x {{item.product.product_name}}</h4>
+                                                            <p class="price">${{item.total_cost}}</p>
+                                                        </div>
+                                                        <div class="cart-item-close">
+                                                            <a href="{% url 'core:remove-from-cart' item.id %}" data-toggle="tooltip" data-title="Remove">&times;</a>
+                                                        </div>
+                                                    </li>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <div>
+                                                        No Items in the cart.
+                                                    </div>
+                                                {% endif %}
+                                            </ul>
+                                        {% else %}
+                                            <a href="{% url 'accounts:login' %}">Login</a>
+                                            to view your cart.
+                                        {% endif %}
+                                    </div>
+                                    {% if cart.items.all|length > 0 %}
+                                        <div class="cart-footer">
+                                            <div class="row row-space-10">
+                                                <div class="col-xs-6">
+                                                    <a href="{% url 'core:checkout_cart' %}" class="btn btn-default btn-block">View Cart</a>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <a href="{% url 'core:checkout_shipping' %}" class="btn btn-inverse btn-block">Checkout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                    {% endif %}
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'core:my_account' %}">
+                                    <img src="{% static 'assets/img/user-1.jpg' %}" class="user-img" alt="" />
+                                    <span class="hidden-md hidden-sm hidden-xs">{{user.email}}</span>
+                                </a>
+                                <!-- <a href="">Logout?</a> -->
+                                {% else %}
+                                    <a href="{% url 'accounts:login' %}">Login</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END header-nav -->
+                </div>
+                <!-- END header-container -->
+            </div>
+            <!-- END container -->
+        </div>
+        <!-- END #header -->
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVEL_ERROR %}
+            <div class="alert alert-warning alert-dismissible d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>
+                    {{message}}
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+        {% elif message.level == DEFAULT_MESSAGE_LEVEL_INFO %}
+            <div class="alert alert-primary alert-dismissible d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Primary:"><use xlink:href="#info-fill"/></svg>
+                <div>
+                {{message}}
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+        {% else %}
+            <div class="alert alert-success alert-dismissible d-flex align-items-center just" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                <div>
+                {{message}}
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+        {% block content %}
+        {% endblock %}
+        <!-- BEGIN #footer -->
+        <div id="footer" class="footer">
+            <!-- BEGIN container -->
+            <div class="container">
+                <!-- BEGIN row -->
+                <div class="row">
+                    <!-- BEGIN col-3 -->
+                    <div class="col-md-3">
+                        <h4 class="footer-header">ABOUT US</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec tristique dolor, ac efficitur velit. Nulla lobortis tempus convallis. Nulla aliquam lectus eu porta pulvinar. Mauris semper justo erat. 
+                        </p>
+                        <p>
+                            Vestibulum porttitor lorem et vestibulum pharetra. Phasellus sit amet mi congue, hendrerit mi ut, dignissim eros.
+                        </p>
+                    </div>
+                    <!-- END col-3 -->
+                    <!-- BEGIN col-3 -->
+                    <div class="col-md-3">
+                        <h4 class="footer-header">RELATED LINKS</h4>
+                        <ul class="fa-ul">
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Shopping Help</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Terms of Use</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Contact Us</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Careers</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Payment Method</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Sales & Refund</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Sitemap</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Privacy & Policy</a></li>
+                        </ul>
+                    </div>
+                    <!-- END col-3 -->
+                    <!-- BEGIN col-3 -->
+                    <div class="col-md-3">
+                        <h4 class="footer-header">LATEST PRODUCT</h4>
+                        <ul class="list-unstyled list-product">
+                            <li>
+                                <div class="image">
+                                    <img src="{% static 'assets/img/iphone-6s.jpg' %}" alt="" />
+                                </div>
+                                <div class="info">
+                                    <h4 class="info-title">Iphone 6s</h4>
+                                    <div class="price">$1200.00</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="image">
+                                    <img src="{% static 'assets/img/galaxy-s6.jpg' %}" alt="" />
+                                </div>
+                                <div class="info">
+                                    <h4 class="info-title">Samsung Galaxy s7</h4>
+                                    <div class="price">$850.00</div>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="image">
+                                    <img src="{% static 'assets/img/ipad-pro.jpg' %}" alt="" />
+                                </div>
+                                <div class="info">
+                                    <h4 class="info-title">Ipad Pro</h4>
+                                    <div class="price">$800.00</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="image">
+                                    <img src="{% static 'assets/img/galaxy-note5.jpg' %}" alt="" />
+                                </div>
+                                <div class="info">
+                                    <h4 class="info-title">Samsung Galaxy Note 5</h4>
+                                    <div class="price">$1200.00</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END col-3 -->
+                    <!-- BEGIN col-3 -->
+                    <div class="col-md-3">
+                        <h4 class="footer-header">OUR CONTACT</h4>
+                        <address>
+                            <strong>Twitter, Inc.</strong><br />
+                            1355 Market Street, Suite 900<br />
+                            San Francisco, CA 94103<br /><br />
+                            <abbr title="Phone">Phone:</abbr> (123) 456-7890<br />
+                            <abbr title="Fax">Fax:</abbr> (123) 456-7891<br />
+                            <abbr title="Email">Email:</abbr> <a href="mailto:sales@myshop.com">sales@myshop.com</a><br />
+                            <abbr title="Skype">Skype:</abbr> <a href="skype:myshop">myshop</a>
+                        </address>
+                    </div>
+                    <!-- END col-3 -->
+                </div>
+                <!-- END row -->
+            </div>
+            <!-- END container -->
+        </div>
+        <!-- BEGIN #footer-copyright -->
+        <div id="footer-copyright" class="footer-copyright">
+            <!-- BEGIN container -->
+            <div class="container">
+                <div class="payment-method">
+                    <img src="{% static 'assets/img/payment_method.png' %}" alt="" />
+                </div>
+                <div class="copyright">
+                    Copyright &copy; 2016 SeanTheme. All rights reserved.
+                </div>
+            </div>
+            <!-- END container -->
+        </div>
+    </div>
+    <div class="theme-panel">
+        <a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-cog"></i></a>
+        <div class="theme-panel-content">
+            <ul class="theme-list clearfix">
+                <li><a href="javascript:;" class="bg-purple" data-theme="purple" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Purple">&nbsp;</a></li>
+                <li><a href="javascript:;" class="bg-blue" data-theme="blue" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Blue">&nbsp;</a></li>
+                <li class="active"><a href="javascript:;" class="bg-green" data-theme="default" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Default">&nbsp;</a></li>
+                <li><a href="javascript:;" class="bg-orange" data-theme="orange" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Orange">&nbsp;</a></li>
+                <li><a href="javascript:;" class="bg-red" data-theme="red" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Red">&nbsp;</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- end theme-panel -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="{% static 'assets/plugins/jquery/jquery-3.7.0.min.js'%}"></script>
+	<script src="{% static 'assets/plugins/jquery/jquery-migrate-1.4.1.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/bootstrap/js/bootstrap.js' %}"></script>
+	<!--[if lt IE 9]>
+		<script src="assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="assets/crossbrowserjs/respond.min.js"></script>
+		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="{% static 'assets/plugins/jquery-cookie/jquery.cookie.js' %}"></script>
+	<script src="{% static 'assets/js/apps.min.js' %}"></script>
+	<script src="{% static 'assets/js/script.js' %}"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<script>
+	    $(document).ready(function() {
+	        App.init();
+	    });
+	</script>
+</body>
+</html>

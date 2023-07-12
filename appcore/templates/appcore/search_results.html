@@ -1,0 +1,146 @@
+{% extends 'appcore/base_boilerplate.html' %}
+{% load static %}
+{% block title %} Search results for "{{query}}" {% endblock %}
+{% block content %}
+<!-- BEGIN #page-header -->
+<div id="page-header" class="section-container page-header-container bg-black">
+    <!-- BEGIN page-header-cover -->
+    <div class="page-header-cover">
+        <img src="{% static 'assets/img/search-cover.jpg' %}" alt="" />
+    </div>
+    <!-- END page-header-cover -->
+    <!-- BEGIN container -->
+    <div class="container">
+        <h1 class="page-header">Search Results for "<b>{{query}}</b>"</h1>
+    </div>
+    <!-- END container -->
+</div>
+<!-- BEGIN #page-header -->
+
+<!-- BEGIN search-results -->
+<div id="search-results" class="section-container bg-silver">
+    <!-- BEGIN container -->
+    <div class="container">
+        <!-- BEGIN search-container -->
+        <div class="search-container">
+            <!-- BEGIN search-content -->
+            <div class="search-content">
+                <!-- BEGIN search-toolbar -->
+                <div class="search-toolbar">
+                    <!-- BEGIN row -->
+                    <div class="row">
+                        <!-- BEGIN col-6 -->
+                        <div class="col-md-6">
+                            <h4>We found {{total_results}} Items for "{{query}}"</h4>
+                        </div>
+                        <!-- END col-6 -->
+                        <!-- BEGIN col-6 -->
+                        <div class="col-md-6 text-right">
+                            <ul class="sort-list">
+                                <li class="text"><i class="fa fa-filter"></i> Sort by:</li>
+                                <li class="active"><a href="#">Popular</a></li>
+                                <li><a href="#">New Arrival</a></li>
+                                <li><a href="#">Discount</a></li>
+                                <li><a href="#">Price</a></li>
+                            </ul>
+                        </div>
+                        <!-- END col-6 -->
+                    </div>
+                    <!-- END row -->
+                </div>
+                <!-- END search-toolbar -->
+                <!-- BEGIN search-item-container -->
+                <div class="search-item-container">
+                    <!-- BEGIN item-row -->
+                    <div class="item-row">
+                        {% for product in possible_results %}
+                            <!-- BEGIN item -->
+                        <div class="item item-thumbnail">
+                            <a href="{% url 'core:product_details' product.id %}" class="item-image">
+                                <img src="{% static product.image_path %}" alt="" />
+                                {% if product.discount > 0 %}
+                                    <div class="discount">{{product.discount}}% OFF</div>
+                                {% endif %}
+                            </a>
+                            <div class="item-info">
+                                <h4 class="item-title">
+                                    <a href="{% url 'core:product_details' product.id %}">{{product.product_name}}</a>
+                                </h4>
+                                <p class="item-desc">{{product.product_tagline}}</p>
+                                {% if product.discount > 0 %}
+                                    <div class="item-price">${{product.discounted_price}}</div>
+                                    <div class="item-discount-price">${{product.product_price}}</div>
+                                {% else %}
+                                <div class="item-price">${{product.discounted_price}}</div>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                        <!-- END item -->
+                        {% endfor %}
+                    </div>
+                    <!-- END item-row -->
+                </div>
+                <!-- END search-item-container -->
+                <!-- BEGIN pagination -->
+                <div class="text-center">
+                    <ul class="pagination m-t-0">
+                        <li class="disabled"><a href="javascript:;">Previous</a></li>
+                        <li class="active"><a href="javascript:;">1</a></li>
+                        <li><a href="javascript:;">2</a></li>
+                        <li><a href="javascript:;">3</a></li>
+                        <li><a href="javascript:;">4</a></li>
+                        <li><a href="javascript:;">5</a></li>
+                        <li><a href="javascript:;">Next</a></li>
+                    </ul>
+                </div>
+                <!-- END pagination -->
+            </div>
+            <!-- END search-content -->
+            <!-- BEGIN search-sidebar -->
+            <div class="search-sidebar">
+                <h4 class="title">Filter By</h4>
+                <form action="search_results.html" method="POST" name="filter_form">
+                    <div class="form-group">
+                        <label class="control-label">Keywords</label>
+                        <input type="text" class="form-control input-sm" name="keyword" value="Mobile Phones" placeholder="Enter Keywords" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Price</label>
+                        <div class="row row-space-0">
+                            <div class="col-md-5">
+                                <input type="number" class="form-control input-sm" name="price_from" value="10" placeholder="Price From" />
+                            </div>
+                            <div class="col-md-2 text-center p-t-5 f-s-12 text-muted">to</div>
+                            <div class="col-md-5">
+                                <input type="number" class="form-control input-sm" name="price_to" value="10000" placeholder="Price To" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-b-30">
+                        <button type="submit" class="btn btn-sm btn-inverse"><i class="fa fa-search"></i> Filter</button>
+                    </div>
+                </form>
+                <h4 class="title m-b-0">Categories</h4>
+                <ul class="search-category-list">
+                    <li><a href="#">Microsoft <span class="pull-right">(10)</span></a></li>
+                    <li><a href="#">Samsung <span class="pull-right">(15)</span></a></li>
+                    <li><a href="#">Apple <span class="pull-right">(32)</span></a></li>
+                    <li><a href="#">Micromax <span class="pull-right">(4)</span></a></li>
+                    <li><a href="#">Karbonn <span class="pull-right">(6)</span></a></li>
+                    <li><a href="#">Intex <span class="pull-right">(8)</span></a></li>
+                    <li><a href="#">Sony <span class="pull-right">(42)</span></a></li>
+                    <li><a href="#">HTC <span class="pull-right">(33)</span></a></li>
+                    <li><a href="#">Asus <span class="pull-right">(15)</span></a></li>
+                    <li><a href="#">Nokia <span class="pull-right">(84)</span></a></li>
+                    <li><a href="#">Blackberry <span class="pull-right">(8)</span></a></li>
+                </ul>
+            </div>
+            <!-- END search-sidebar -->
+        </div>
+        <!-- END search-container -->
+    </div>
+    <!-- END container -->
+</div>
+<!-- END search-results -->
+{% endblock %}
