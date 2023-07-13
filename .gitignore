@@ -1,3 +1,10 @@
 .env
 node_modules
 .vscode
+appcore/__pycache__/helpers.cpython-311.pyc
+appcore/__pycache__/models.cpython-311.pyc
+appcore/__pycache__/views.cpython-311.pyc
+myecsite/__pycache__/settings.cpython-311.pyc
+appcore/__pycache__/models.cpython-311.pyc
+appcore/__pycache__/views.cpython-311.pyc
+myecsite/__pycache__/settings.cpython-311.pyc

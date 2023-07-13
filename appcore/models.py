@@ -72,7 +72,6 @@ class ShoppingCart(models.Model):
         total = 0
         for each in self.items.all():
             total += each.quantity * each.product.discounted_price()
-            print(total)
         return total
     
 class ShippingDetails(models.Model):

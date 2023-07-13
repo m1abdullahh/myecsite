@@ -12,19 +12,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import stripe
 from django.core.mail import send_mail
+from .helpers import to_dict, get_html_email
 # from sendgrid import SendGridAPIClient
 # from sendgrid.helpers.mail import Mail
-
-from itertools import chain
-
-def to_dict(instance):
-    opts = instance._meta
-    data = {}
-    for f in chain(opts.concrete_fields, opts.private_fields):
-        data[f.name] = f.value_from_object(instance)
-    for f in opts.many_to_many:
-        data[f.name] = [i.id for i in f.value_from_object(instance)]
-    return data
 
 def index(request):
     template = "appcore/index.html"
@@ -152,6 +142,8 @@ def my_account(request):
     return render(request, 'appcore/my_account.html')
 
 def check_out_view(request):
+    if request.GET.get("payment", False) == "cancelled":
+        messages.info(request, "Your payment was cancelled. No Transaction was made.")
     if request.method == "POST":
         return redirect('core:checkout_shipping')
     return render(request, 'appcore/checkout_cart.html')
@@ -192,13 +184,17 @@ def checkout_complete(request):
         each.delete()
 
     try:
-        send_mail(f"Order #{cart.id} Confirmed", f"""
-        Your order with items: {[item.__str__() for item in ordered_items]} has been confirmed. Total cost would
-        be ${subtotal} inclusive of taxes.
-        Happy Shopping!
-        ~ Enigmatix.store
-        """,
-        "elsajones68@gmail.com", [request.user.email])
+        send_mail(subject=f"Order #{cart.id} Confirmed", message="", from_email="elsajones68@gmail.com",
+                  recipient_list=[request.user.email],
+        #           html_message=f"""
+        #           <div>
+        # Your order with items: {[item.__str__() for item in ordered_items]} has been confirmed. Total cost would
+        # be ${subtotal} inclusive of taxes.
+        # Happy Shopping!
+        # ~ Enigmatix.store
+        # </div>
+        # """,)
+        html_message=get_html_email(ordered_items, subtotal))
     except Exception as e:
         print(e)
 
@@ -224,7 +220,7 @@ def create_checkout_session(request):
         try:
             checkout_session = stripe.checkout.Session.create(
                 success_url=domain_url + 'checkout_payment',
-                cancel_url=domain_url + 'checkout_cart',
+                cancel_url=domain_url + 'checkout_cart?payment=cancelled',
                 payment_method_types=['card'],
                 mode='payment',
                 line_items=items
