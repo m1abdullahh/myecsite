@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.urls import reverse
 
+
 class Product(models.Model):
     product_name = models.CharField(max_length=50)
     product_price = models.FloatField(verbose_name="Price")
@@ -58,6 +59,7 @@ class OrderItem(models.Model):
 
     def __str__(self) -> str:
         return f"{self.quantity}x{self.product}"
+
 
 class ShoppingCart(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

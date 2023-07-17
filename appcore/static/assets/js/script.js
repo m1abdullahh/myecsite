@@ -23,7 +23,7 @@ for (let i of mobile_brand_links) {
             url: `${location.origin}/get_brand_products`,
         data: {"brand": ev.target.innerText, "products": "mobile", csrfmiddlewaretoken: csrf_token,}}
         ).done((elems) => {
-            products = JSON.parse(elems)["products"]
+            products = elems["products"]
             mobile_category_item_full.setAttribute("href", `/${products[0].id}/product_details`)
             mobile_category_item_full.innerHTML = `<div class="item">
             <div class="item-cover">
@@ -75,7 +75,6 @@ for (let i of tablet_brand_links) {
             url: `${location.origin}/get_brand_products`,
         data: {"brand": ev.target.innerText, "products": "tablet", csrfmiddlewaretoken: csrf_token,}}
         ).done((elems) => {
-            products = JSON.parse(elems)["products"]
             tablet_category_item_full.setAttribute("href", `/${products[0].id}/product_details`)
             tablet_category_item_full.innerHTML = `<div class="item">
             <div class="item-cover">

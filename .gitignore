@@ -8,3 +8,11 @@ myecsite/__pycache__/settings.cpython-311.pyc
 appcore/__pycache__/models.cpython-311.pyc
 appcore/__pycache__/views.cpython-311.pyc
 myecsite/__pycache__/settings.cpython-311.pyc
+appcore/__pycache__/models.cpython-311.pyc
+appcore/__pycache__/serializers.cpython-311.pyc
+appcore/__pycache__/urls.cpython-311.pyc
+appcore/__pycache__/views.cpython-311.pyc
+appcore/migrations/0005_alter_product_image_path.py
+appcore/migrations/__pycache__/0005_alter_product_image_path.cpython-311.pyc
+myecsite/__pycache__/settings.cpython-311.pyc
+appcore/__pycache__/models.cpython-311.pyc
