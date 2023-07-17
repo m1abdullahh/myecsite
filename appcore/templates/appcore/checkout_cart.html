@@ -88,7 +88,7 @@
                                     <tr>
                                         <td class="cart-product">
                                             <div class="product-img">
-                                                <img src="{% static order.product.image_path %}" alt="" />
+                                                <img src="{{ order.product.product_image.url }}" alt="" />
                                             </div>
                                             <div class="product-info">
                                                 <div class="title">{{order.product.product_name}}</div>

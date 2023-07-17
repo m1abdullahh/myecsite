@@ -57,7 +57,7 @@
                             <!-- BEGIN item -->
                         <div class="item item-thumbnail">
                             <a href="{% url 'core:product_details' product.id %}" class="item-image">
-                                <img src="{% static product.image_path %}" alt="" />
+                                <img src="{{ product.product_image.url }}" alt="" />
                                 {% if product.discount > 0 %}
                                     <div class="discount">{{product.discount}}% OFF</div>
                                 {% endif %}

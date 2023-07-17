@@ -233,7 +233,7 @@
                                                 {% if cart.items.all|length > 0 %}
                                                     {% for item in cart.items.all|dictsort:"product.product_name" %}
                                                     <li>
-                                                        <div class="cart-item-image"><img src="{% static item.product.image_path %}" alt="" /></div>
+                                                        <div class="cart-item-image"><img src="{{ item.product.product_image.url }}" alt="" /></div>
                                                         <div class="cart-item-info">
                                                             <h4>{{item.quantity}}x {{item.product.product_name}}</h4>
                                                             <p class="price">${{item.total_cost}}</p>

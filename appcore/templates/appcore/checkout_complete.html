@@ -99,7 +99,7 @@
                                         {% for item in ordered_items%}
                                             <td class="value product-summary">
                                                 <div class="product-summary-img">
-                                                    <img src="{% static item.product.image_path %}" alt="" />
+                                                    <img src="{{ item.product.product_image.url }}" alt="" />
                                                 </div>
                                                 <div class="product-summary-info">
                                                     <div class="title">{{item.quantity}}x {{item.product.product_name}}</div>

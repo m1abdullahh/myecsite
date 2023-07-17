@@ -16,7 +16,6 @@ class Product(models.Model):
         default=list,
     )
     product_tagline = models.CharField(max_length=50, blank=True)
-    image_path = models.CharField(verbose_name="Image Path", max_length=200)
     info_lines = ArrayField(
         base_field=models.CharField(max_length=100),
         default=list
@@ -29,7 +28,9 @@ class Product(models.Model):
     )
     additional_info = models.JSONField(default=dict, blank=True)
     price_id = models.CharField(max_length=200, default="")
+    product_image = models.ImageField(upload_to='images/', verbose_name="Primary Image")
 
+    
     def __str__(self) -> str:
         return self.product_name
 

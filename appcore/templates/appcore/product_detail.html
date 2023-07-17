@@ -23,7 +23,7 @@
                     <!-- BEGIN product-thumbnail -->
                     <div class="product-thumbnail">
                         <ul class="product-thumbnail-list">
-                            <li class="active"><a href="#" data-click="show-main-image" data-url="{% static product.image_path %}"><img src="{% static product.image_path %}" alt="" /></a></li>
+                            <li class="active"><a href="#" data-click="show-main-image" data-url="{{ product.product_image.url }}"><img src="{{ product.product_image.url }}" alt="" /></a></li>
                             {% for path in product.page_photos %}
                                 <li><a href="#" data-click="show-main-image" data-url="{% static path %}"><img src="{% static path %}" alt="" /></a></li>
                             {% endfor %}
@@ -32,7 +32,7 @@
                     <!-- END product-thumbnail -->
                     <!-- BEGIN product-main-image -->
                     <div class="product-main-image" data-id="main-image">
-                        <img src="{% static product.image_path %}" alt="" />
+                        <img src="{{ product.product_image.url }}" alt="" />
                     </div>
                     <!-- END product-main-image -->
                 </div>
@@ -140,7 +140,7 @@
                             <div class="product-desc right">
                         {% endif %}
                             <div class="image">
-                                <img src="{% static product.image_path %}" alt="" />
+                                <img src="{{ product.product_image.url }}" alt="" />
                             </div>
                             <div class="desc">
                                 <h4>{{key}}</h4>
@@ -278,7 +278,7 @@
                     <!-- BEGIN item -->
                     <div class="item item-thumbnail">
                         <a href="{% url 'core:product_details' product.id %}" class="item-image">
-                            <img src="{% static product.image_path %}" alt="">
+                            <img src="{{ product.product_image.url }}" alt="">
                             {% if product.discount > 0 %}
                             <div class="discount">{{product.discount}}% OFF</div>
                             {% endif %}

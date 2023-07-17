@@ -1,6 +1,6 @@
 {% extends 'appcore/base_boilerplate.html' %}
 {% load static %}
-{% block title %} {{query|capfirst}} Products {% endblock %}
+{% block title %} {{search_query|capfirst}} Products {% endblock %}
 {% block content %}
 <!-- BEGIN #page-header -->
 <div id="page-header" class="section-container page-header-container bg-black">
@@ -11,7 +11,7 @@
     <!-- END page-header-cover -->
     <!-- BEGIN container -->
     <div class="container">
-        <h1 class="page-header"><b>{{query|capfirst}}</b> Products</h1>
+        <h1 class="page-header"><b>{{search_query|capfirst}}</b> Products</h1>
     </div>
     <!-- END container -->
 </div>
@@ -57,7 +57,7 @@
                             <!-- BEGIN item -->
                         <div class="item item-thumbnail">
                             <a href="{% url 'core:product_details' product.id %}" class="item-image">
-                                <img src="{% static product.image_path %}" alt="" />
+                                <img src="{{ product.product_image.url }}" alt="" />
                                 {% if product.discount > 0 %}
                                     <div class="discount">{{product.discount}}% OFF</div>
                                 {% endif %}
