@@ -10,6 +10,7 @@ def to_dict(instance):
         data[f.name] = [i.id for i in f.value_from_object(instance)]
     return data
 
+
 def get_html_email(items, subtotal):
     items = [item.__str__() for item in items]
     return """
@@ -358,7 +359,7 @@ table, td {{ color: #000000; }} #u_body a {{ color: #0000ee; text-decoration: un
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 20px 0px;font-family:'Montserrat',sans-serif;" align="left">
         
   <div class="v-font-size" style="font-size: 14px; color: #000000; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;">Copyright 2023, Enigmatix.store</p>
+    <p style="font-size: 14px; line-height: 140%;">Copyright 2023, EbadAbid.store</p>
   </div>
 
       </td>

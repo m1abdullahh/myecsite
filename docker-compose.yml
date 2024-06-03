@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+    proxy:
+        build:
+            context: ./nginx
+        depends_on:
+            - web
+        ports:
+            - 80:80
+    web:
+        build:
+          context: .
+        ports:
+            - 8000:8000
+        depends_on:
+            - db
+        environment:
+            - DB_HOST=db
+    db:
+        image: "postgres"
+        ports:
+            - 5432:5432
+        volumes:
+            - db:/data/db
+
+volumes:
+    db: {}

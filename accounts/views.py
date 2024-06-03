@@ -3,7 +3,7 @@ from .forms import AuthForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-# Create your views here.
+
 def login_user(request):
     redirect_to = 'core:index'
     if request.method == 'POST':

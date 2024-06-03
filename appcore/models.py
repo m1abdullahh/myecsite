@@ -76,7 +76,8 @@ class ShoppingCart(models.Model):
         for each in self.items.all():
             total += each.quantity * each.product.discounted_price()
         return total
-    
+
+
 class ShippingDetails(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=20, blank=False)
@@ -94,11 +95,11 @@ class ShippingDetails(models.Model):
 class PaymentDetails(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     cardholder = models.CharField(max_length=30)
-    cardnumber = models.CharField(max_length=16)
+    card_number = models.CharField(max_length=16)
     payment_type = models.CharField(max_length=20, blank=True)
-    mm = models.CharField()
-    yy = models.CharField()
-    number = models.CharField()
+    mm = models.CharField(max_length=2)
+    yy = models.CharField(max_length=4)
+    number = models.CharField(max_length=3)
 
     def __str__(self) -> str:
         return self.user.email
@@ -109,7 +110,7 @@ class ProductReview(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
     review = models.CharField(max_length=500)
-    rating = models.CharField(default=5)
+    rating = models.CharField(default="5", max_length=1)
     date = models.DateTimeField(default=timezone.now, blank=True)
 
     def __str__(self) -> str:

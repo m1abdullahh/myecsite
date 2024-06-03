@@ -5,7 +5,7 @@ from .models import Product, OrderItem, ShoppingCart, ShippingDetails, ProductRe
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.urls import reverse
-from .forms import ShippingDetailsForm, ProductReviewForm
+from .forms import ShippingDetailsForm, ProductReviewForm, PriceRangeForm
 from django.contrib.postgres.search import SearchVector
 from django.http import HttpResponse
 from django.http.response import JsonResponse
@@ -43,7 +43,13 @@ class ProductsView(generic.ListView):
     context_object_name = 'products'
     
     def get_queryset(self) -> QuerySet[Any]:
-        return Product.objects.all()
+        price_from = self.request.GET.get('price_from', None)
+        price_to = self.request.GET.get('price_to', None)
+
+        if not price_from or not price_to:
+            return Product.objects.all()
+
+        return Product.objects.filter(product_price__lte=price_to, product_price__gte=price_from)
 
 
 class TaggedProducts(generic.ListView):
@@ -53,8 +59,9 @@ class TaggedProducts(generic.ListView):
 
     def get_queryset(self) -> QuerySet[Any]:
         search_query = self.kwargs['query']
-        possible_results = Product.objects.annotate(search=SearchVector("tags", "product_name", "manufacturer"),
-                                                ).filter(search=search_query)
+        possible_results = Product.objects.annotate(
+            search=SearchVector("tags", "product_name", "manufacturer")
+        ).filter(search=search_query)
         return possible_results
 
 
@@ -94,7 +101,8 @@ class CartView(generic.View):
             messages.info(request, "Your payment was cancelled. No Transaction was made.")
         self.template_name = 'appcore/checkout_cart.html'
         return render(request, self.template_name, {})
-    
+
+
     def post(self, request, *args, **kwargs):
         return render(request, 'appcore/checkout_info.html', {})
     
@@ -103,7 +111,6 @@ class ShippingDetailsView(generic.View):
 
     def get(self, request, *args: Any, **kwargs: Any) -> HttpResponse:
         return render(request, 'appcore/checkout_info.html')
-
     
     def post(self, request, *args, **kwargs):
         exists = ShippingDetails.objects.filter(user=request.user).exists()
@@ -117,8 +124,6 @@ class ShippingDetailsView(generic.View):
             return redirect('core:checkout_billing')
         messages.error(request, "Please fill all required fileds correctly.")
         return redirect('core:checkout_shipping')
-
-
 
 
 class ContactView(generic.TemplateView):
@@ -167,19 +172,19 @@ def search_post_request(request):
 
 def add_to_shopping_cart(request, product_id, quantity=1):
     product = get_object_or_404(Product, pk=product_id)
-    exists = OrderItem.objects.filter(product=product).exists()
+    exists = OrderItem.objects.exists(product=product)
     if exists:
         order = OrderItem.objects.get(product=product)
         order.quantity += 1
         order.save()
         messages.success(request, "Item added to cart.")
-        return redirect("core:product_details", product_id=product_id)
+        return redirect("core:product_details", pk=product_id)
     order_item = OrderItem.objects.create(product=product, quantity=quantity)
     cart, created = ShoppingCart.objects.get_or_create(user=request.user)
     cart.items.add(order_item)
     cart.save()
     messages.success(request, "Item added to cart.")
-    return redirect("core:product_details", product_id=product_id)
+    return redirect("core:product_details", pk=product_id)
 
 
 def change_quantity(request, product_id, change):
@@ -204,7 +209,7 @@ def remove_from_shopping_cart(request, item_id):
 
 
 def checkout_complete(request):
-    cart = ShoppingCart.objects.get(user=request.user)
+    cart = ShoppingCart.objects.get(user=request.user.id)
     subtotal = cart.subtotal
     ordered_items = []
     for each in cart.items.all():
@@ -212,7 +217,7 @@ def checkout_complete(request):
         each.delete()
 
     try:
-        send_mail(subject=f"Order #{cart.id} Confirmed", message="", from_email="elsajones68@gmail.com",
+        send_mail(subject=f"Order #{cart.id} Confirmed", message="",
                   recipient_list=[request.user.email],
         html_message=get_html_email(ordered_items, subtotal))
     except Exception as e:

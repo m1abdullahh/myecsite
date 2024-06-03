@@ -1,4 +1,4 @@
-{% extends 'appcore/base_boilerplate.html' %}
+    {% extends 'appcore/base_boilerplate.html' %}
 {% load static %}
 {% block title %} All Products - ColorAdmin {% endblock %}
 {% block content %}
@@ -99,36 +99,37 @@
             <!-- BEGIN search-sidebar -->
             <div class="search-sidebar">
                 <h4 class="title">Filter By</h4>
-                <form action="product.html" method="POST" name="filter_form">
-                    <div class="form-group">
-                        <label class="control-label">Keywords</label>
-                        <input type="text" class="form-control input-sm" name="keyword" value="Mobile Phones" placeholder="Enter Keywords" />
-                    </div>
+                <form action="#" name="filter_form">
                     <div class="form-group">
                         <label class="control-label">Price</label>
                         <div class="row row-space-0">
                             <div class="col-md-5">
-                                <input type="number" class="form-control input-sm" name="price_from" value="10" placeholder="Price From" />
+                                {% if request.GET.price_from %}
+                                <input type="number" class="form-control input-sm" id="price_from" name="price_from" value="{{ request.GET.price_from }}" placeholder="Price From" />
+                                {% else %}
+                                <input type="number" class="form-control input-sm" id="price_from" name="price_from" value="1" placeholder="Price From" />
+                                {% endif %}
                             </div>
                             <div class="col-md-2 text-center p-t-5 f-s-12 text-muted">to</div>
                             <div class="col-md-5">
-                                <input type="number" class="form-control input-sm" name="price_to" value="10000" placeholder="Price To" />
+                                {% if request.GET.price_to %}
+                                <input type="number" class="form-control input-sm" name="price_to" id="price_to" value="{{ request.GET.price_to }}" placeholder="Price To" />
+                                {% else %}
+                                <input type="number" class="form-control input-sm" name="price_to" id="price_to" value="1000" placeholder="Price To" />
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                     <div class="m-b-30">
-                        <button type="submit" class="btn btn-sm btn-inverse"><i class="fa fa-search"></i> Filter</button>
+                        <button onclick="function applyFilter(ev) {
+                            ev.preventDefault()
+                            let priceFrom = document.getElementById('price_from').value
+                            let priceTo = document.getElementById('price_to').value
+                            location.assign(`products/?price_range=${priceFrom}_${priceTo}`)
+                        }
+                        applyFilter()" class="btn btn-sm btn-inverse"><i class="fa fa-search"></i> Filter</button>
                     </div>
                 </form>
-                <h4 class="title m-b-0">Categories</h4>
-                <ul class="search-category-list">
-                    <li><a href="#">iPhone <span class="pull-right">(10)</span></a></li>
-                    <li><a href="#">Mac <span class="pull-right">(15)</span></a></li>
-                    <li><a href="#">iPad <span class="pull-right">(32)</span></a></li>
-                    <li><a href="#">Watch <span class="pull-right">(4)</span></a></li>
-                    <li><a href="#">TV <span class="pull-right">(6)</span></a></li>
-                    <li><a href="#">Accessories <span class="pull-right">(38)</span></a></li>
-                </ul>
             </div>
             <!-- END search-sidebar -->
         </div>
